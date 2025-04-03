@@ -1,0 +1,248 @@
+{% extends 'requests/base.html' %}
+{% load static %}
+
+{% block title %}Zentropic - Digital Solutions{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Business with Custom Digital Solutions</h1>
+                <p>We create innovative web and mobile applications tailored to your business needs.</p>
+                <a href="#request-form" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>We offer a range of digital solutions to help your business grow</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Website Design</h3>
+                    <p>Beautiful, responsive websites that engage your audience and drive conversions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Web Applications</h3>
+                    <p>Custom web applications that automate processes and improve efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Apps</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Consultation</h3>
+                    <p>Expert advice on digital strategy, technology solutions, and implementation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Form Section -->
+    <section id="request-form" class="request-form">
+        <div class="container">
+            <div class="section-header">
+                <h2>Request a Quote</h2>
+                <p>Tell us about your project and we'll get back to you with a custom solution</p>
+            </div>
+            <div class="form-container">
+                <form method="post" action="{% url 'submit_request' %}">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Name *</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="error-message">{{ form.name.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="error-message">{{ form.email.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.company.id_for_label }}">Company</label>
+                            {{ form.company }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">Phone</label>
+                            {{ form.phone }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.service_type.id_for_label }}">Service Type *</label>
+                            {{ form.service_type }}
+                            {% if form.service_type.errors %}
+                                <div class="error-message">{{ form.service_type.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.budget.id_for_label }}">Budget</label>
+                            {{ form.budget }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.timeline.id_for_label }}">Timeline</label>
+                            {{ form.timeline }}
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="{{ form.description.id_for_label }}">Project Description *</label>
+                            {{ form.description }}
+                            {% if form.description.errors %}
+                                <div class="error-message">{{ form.description.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <p class="required-note">* Required fields</p>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="{% static 'requests/img/about.jpg' %}" alt="Zentropic Team" onerror="this.src='/api/placeholder/500/400'; this.onerror=null;">
+                </div>
+                <div class="about-text">
+                    <h2>About Zentropic</h2>
+                    <p>We are a team of passionate developers and designers dedicated to creating digital solutions that transform businesses. With years of experience in web and mobile development, we deliver high-quality applications that meet your specific needs.</p>
+                    <p>Our approach combines technical expertise with creative design to develop solutions that are not only functional but also visually appealing and user-friendly.</p>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Success stories from businesses we've helped</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Zentropic transformed our outdated website into a modern, user-friendly platform that has significantly increased our online conversions."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Sarah Johnson</h4>
+                        <p>Marketing Director, TechCorp</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The custom web application Zentropic created for us has streamlined our internal processes and saved us countless hours of manual work."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Michael Thompson</h4>
+                        <p>Operations Manager, InnovateCo</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Working with Zentropic was a pleasure from start to finish. They understood our needs and delivered a solution that exceeded our expectations."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <h4>Emily Rodriguez</h4>
+                        <p>CEO, StartUp Inc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Tech Street, Innovation City, ST 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@zentropic.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Friday: 9am - 5pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <img src="/api/placeholder/600/400" alt="Map location">
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Simple testimonial slider
+    document.addEventListener('DOMContentLoaded', function() {
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.style.display = i === index ? 'block' : 'none';
+            });
+        }
+        
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+        }
+        
+        // Show first testimonial and start cycling
+        showTestimonial(0);
+        setInterval(nextTestimonial, 5000);
+    });
+</script>
+{% endblock %}

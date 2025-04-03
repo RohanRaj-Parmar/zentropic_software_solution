@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Zentropic - Business Solutions{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'requests/css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+    <style>
+        .header {
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  color: var(--secondary-color);
+}
+
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.main-nav ul {
+  display: flex;
+}
+
+.main-nav li {
+  margin-left: 30px;
+}
+
+.main-nav a {
+  color: var(--secondary-color);
+  font-weight: 500;
+  padding: 5px 0;
+  position: relative;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  bottom: 0;
+  left: 0;
+  transition: var(--transition);
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="Zentropic Logo" class="logo-img">
+                        <span class="logo-text">Zentropic</span>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Zentropic</h3>
+                    <p>Creating digital solutions that transform businesses.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <p><i class="fas fa-envelope"></i> info@zentropic.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9737074676</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; {% now "Y" %} Zentropic. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            mobileToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('show');
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
